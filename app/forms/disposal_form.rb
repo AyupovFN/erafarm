@@ -1,8 +1,6 @@
 class DisposalForm
   include ActiveModel::Model
-
   attr_accessor :product_id, :count
-
   validates_presence_of :product_id, :count
   validates :count, numericality: { greater_than: 0 }
   validate :validate_products_count
