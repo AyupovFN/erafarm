@@ -1,0 +1,19 @@
+%h1 Disposing products
+
+= form_for @form, url: dispose_warehouse_path(@warehouse), method: :post do |f|
+  - if @form.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@form.errors.count, "error")} prohibited this product from being saved:"
+      %ul
+        - @form.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :count
+    = f.number_field :count
+  .field
+    = f.label :product_id
+    = f.select :product_id, @form.products.map{ |c| [c.name, c.id] }
+  .actions
+    = f.submit 'Save'
+

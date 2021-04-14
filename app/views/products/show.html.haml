@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @product.name
+%p
+  %b Count:
+  = @product.count
+%p
+  %b Category:
+  = @product.category
+%p
+  %b Article:
+  = @product.article
+%p
+  %b Warehouse:
+  = @product.warehouse
+
+= link_to 'Edit', edit_warehouse_product_path(@warehouse, @product)
+\|
+= link_to 'Back', warehouse_products_path(@warehouse)

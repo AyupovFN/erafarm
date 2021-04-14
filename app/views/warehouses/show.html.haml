@@ -7,6 +7,35 @@
   %b Address:
   = @warehouse.address
 
+%h1 Listing products
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Article
+      %th Category
+      %th Count
+      %th
+      %th
+      %th
+
+  %tbody
+    - @warehouse.products.each do |product|
+      %tr
+        %td= product.name
+        %td= product.article
+        %td= product.category.name
+        %td= product.count
+        %td= link_to 'Show', warehouse_product_path(@warehouse)
+        %td= link_to 'Edit', edit_warehouse_product_path(@warehouse, product)
+        %td= link_to 'Destroy', warehouse_products_path(@warehouse, product), method: :delete, data: { confirm: 'Are you sure?' }
+=link_to 'Accept products', accept_warehouse_path(@warehouse)
+\|
+=link_to 'Dispose products', dispose_warehouse_path(@warehouse)
+\|
+= link_to 'New product', new_warehouse_product_path(@warehouse)
+\|
 = link_to 'Edit', edit_warehouse_path(@warehouse)
 \|
 = link_to 'Back', warehouses_path

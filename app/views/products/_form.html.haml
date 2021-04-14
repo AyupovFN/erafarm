@@ -1,0 +1,23 @@
+- url = @product.new_record? ? warehouse_products_path(@warehouse) : warehouse_product_path(@warehouse, @product)
+= form_for @product, url: url do |f|
+  - if @product.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@product.errors.count, "error")} prohibited this product from being saved:"
+      %ul
+        - @product.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :count
+    = f.number_field :count
+  .field
+    = f.label :category_id
+    = f.select :category_id, Category.all.map{ |c| [c.name, c.id] }
+  .field
+    = f.label :article
+    = f.number_field :article
+  .actions
+    = f.submit 'Save'
